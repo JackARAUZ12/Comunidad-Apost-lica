@@ -186,64 +186,6 @@
   @media (max-width:860px){
     .grid-2{grid-template-columns:1fr}
   }
-  
-  /* ===== MODO NOCHE ===== */
-body.dark{
-  background:#111;
-  color:#eee;
-}
-body.dark header, body.dark .bottombar{
-  background:#222;
-}
-body.dark .nav a{
-  background:rgba(255,255,255,.15);
-  color:#fff;
-}
-body.dark .nav a:hover{
-  background:rgba(255,255,255,.35);
-}
-body.dark .panel, body.dark .card, body.dark .event, body.dark .testi, body.dark .modal-card{
-  background:#1c1c1c;
-  border-color:#c19a3f;
-  color:#eee;
-  box-shadow:0 10px 25px rgba(0,0,0,.5);
-}
-body.dark .pill{
-  background:#444;
-  border-color:#c19a3f;
-  color:#f4eabf;
-}
-body.dark footer{
-  background:#000;
-}
-body.dark .hero::before{
-  filter:brightness(.3) blur(1.5px);
-}
-  
- /* ===== Blur cuando el modal está abierto ===== */
-body.modal-open > *:not(.modal) {
-  filter: blur(4px);
-  pointer-events: none; /* nada fuera del modal se puede tocar */
-  user-select: none;
-}
-
-.modal {
-  display: grid !important; /* asegurar que se vea */
-  place-items: center;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.65);
-  z-index: 2000;
-  padding: 18px;
-}
-
-.modal-card {
-  pointer-events: auto; /* solo dentro del modal se puede interactuar */
-  position: relative;
-  z-index: 2001;
-  max-height: 90vh; /* evitar que se salga en móviles */
-  overflow-y: auto;  /* permitir scroll interno si el contenido es grande */
-}
 </style>
 </head>
 <body>
@@ -257,10 +199,6 @@ body.modal-open > *:not(.modal) {
       <a href="sugerencias.html">Sugerencias</a>
       <a href="colaborar.html">Colaborar</a>
     </nav>
-    <!-- Botón Modo Noche -->
-<button id="darkModeToggle" aria-label="Cambiar modo noche" style="margin-left:auto; background:#0000; border:none; cursor:pointer; font-size:1.3rem; color:#fff;">
-  🌙
-</button>
   </div>
 </header>
 
@@ -495,33 +433,17 @@ body.modal-open > *:not(.modal) {
   const modalDesde = document.getElementById('modalDesde');
   const modalColab = document.getElementById('modalColab');
 
- function openDistrito(card){
+  function openDistrito(card){
     modalTitle.textContent = card.dataset.title;
     modalImg.src = card.dataset.img;
     modalImg.alt = card.dataset.title;
     modalDesde.textContent = `Desde: ${card.dataset.anio}`;
     modalColab.textContent = `Colaboradores: ${card.dataset.colab}`;
-    
-    document.body.classList.add('modal-open'); // agregar blur y bloquear página
-
-    // mostrar modal
-    if(typeof modal.showModal === 'function'){ 
-        modal.showModal(); 
-    } else { 
-        modal.setAttribute('open',''); 
-    }
-
+    if(typeof modal.showModal === 'function'){ modal.showModal(); }
+    else{ modal.setAttribute('open',''); } // fallback
+    // devolver foco al cerrar
     lastFocus = card;
-}
-
-function closeModal(){
-    if(typeof modal.close === 'function'){ try{ modal.close(); }catch{} }
-    modal.removeAttribute('open');
-
-    document.body.classList.remove('modal-open'); // quitar blur y desbloquear
-
-    if(lastFocus) lastFocus.focus();
-}
+  }
 
   let lastFocus = null;
   document.getElementById('districtGrid').addEventListener('click', e=>{
@@ -542,20 +464,9 @@ function closeModal(){
   closeModalBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', e=>{ if(e.target === modal) closeModal(); });
   window.addEventListener('keydown', e=>{ if(e.key==='Escape' && modal.hasAttribute('open')) closeModal(); });
-
-  // ===== Toggle Modo Noche =====
-const darkModeBtn = document.getElementById('darkModeToggle');
-darkModeBtn.addEventListener('click', ()=>{
-  document.body.classList.toggle('dark');
-  // Cambiar icono
-  if(document.body.classList.contains('dark')){
-    darkModeBtn.textContent = '☀️';
-  }else{
-    darkModeBtn.textContent = '🌙';
-  }
-});
 </script>
 </body>
 </html>
+
 
     
