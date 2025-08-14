@@ -220,16 +220,29 @@ body.dark .hero::before{
   filter:brightness(.3) blur(1.5px);
 }
   
-  /* ===== Estilo para modo blur cuando el modal esté abierto ===== */
-body.modal-open *:not(.modal-card) {
+ /* ===== Blur cuando el modal está abierto ===== */
+body.modal-open > *:not(.modal) {
   filter: blur(4px);
-  pointer-events: none; /* desactiva interacciones en todo excepto modal */
+  pointer-events: none; /* nada fuera del modal se puede tocar */
   user-select: none;
 }
+
+.modal {
+  display: grid !important; /* asegurar que se vea */
+  place-items: center;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  z-index: 2000;
+  padding: 18px;
+}
+
 .modal-card {
-  pointer-events: auto; /* permite interacción dentro del modal */
+  pointer-events: auto; /* solo dentro del modal se puede interactuar */
   position: relative;
-  z-index: 2001; /* asegurar que esté sobre todo */
+  z-index: 2001;
+  max-height: 90vh; /* evitar que se salga en móviles */
+  overflow-y: auto;  /* permitir scroll interno si el contenido es grande */
 }
 </style>
 </head>
@@ -489,17 +502,15 @@ body.modal-open *:not(.modal-card) {
     modalDesde.textContent = `Desde: ${card.dataset.anio}`;
     modalColab.textContent = `Colaboradores: ${card.dataset.colab}`;
     
-    // abrir modal
+    document.body.classList.add('modal-open'); // agregar blur y bloquear página
+
+    // mostrar modal
     if(typeof modal.showModal === 'function'){ 
         modal.showModal(); 
     } else { 
         modal.setAttribute('open',''); 
     }
-    
-    // agregar clase blur a body
-    document.body.classList.add('modal-open');
 
-    // guardar foco para volver al cerrar
     lastFocus = card;
 }
 
@@ -507,12 +518,10 @@ function closeModal(){
     if(typeof modal.close === 'function'){ try{ modal.close(); }catch{} }
     modal.removeAttribute('open');
 
-    // quitar blur al cerrar
-    document.body.classList.remove('modal-open');
+    document.body.classList.remove('modal-open'); // quitar blur y desbloquear
 
     if(lastFocus) lastFocus.focus();
 }
-
 
   let lastFocus = null;
   document.getElementById('districtGrid').addEventListener('click', e=>{
