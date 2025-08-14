@@ -186,6 +186,39 @@
   @media (max-width:860px){
     .grid-2{grid-template-columns:1fr}
   }
+  
+  /* ===== MODO NOCHE ===== */
+body.dark{
+  background:#111;
+  color:#eee;
+}
+body.dark header, body.dark .bottombar{
+  background:#222;
+}
+body.dark .nav a{
+  background:rgba(255,255,255,.15);
+  color:#fff;
+}
+body.dark .nav a:hover{
+  background:rgba(255,255,255,.35);
+}
+body.dark .panel, body.dark .card, body.dark .event, body.dark .testi, body.dark .modal-card{
+  background:#1c1c1c;
+  border-color:#c19a3f;
+  color:#eee;
+  box-shadow:0 10px 25px rgba(0,0,0,.5);
+}
+body.dark .pill{
+  background:#444;
+  border-color:#c19a3f;
+  color:#f4eabf;
+}
+body.dark footer{
+  background:#000;
+}
+body.dark .hero::before{
+  filter:brightness(.3) blur(1.5px);
+}
 </style>
 </head>
 <body>
@@ -468,6 +501,18 @@
   closeModalBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', e=>{ if(e.target === modal) closeModal(); });
   window.addEventListener('keydown', e=>{ if(e.key==='Escape' && modal.hasAttribute('open')) closeModal(); });
+
+  // ===== Toggle Modo Noche =====
+const darkModeBtn = document.getElementById('darkModeToggle');
+darkModeBtn.addEventListener('click', ()=>{
+  document.body.classList.toggle('dark');
+  // Cambiar icono
+  if(document.body.classList.contains('dark')){
+    darkModeBtn.textContent = '☀️';
+  }else{
+    darkModeBtn.textContent = '🌙';
+  }
+});
 </script>
 </body>
 </html>
