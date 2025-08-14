@@ -219,6 +219,18 @@ body.dark footer{
 body.dark .hero::before{
   filter:brightness(.3) blur(1.5px);
 }
+  
+  /* ===== Estilo para modo blur cuando el modal esté abierto ===== */
+body.modal-open *:not(.modal-card) {
+  filter: blur(4px);
+  pointer-events: none; /* desactiva interacciones en todo excepto modal */
+  user-select: none;
+}
+.modal-card {
+  pointer-events: auto; /* permite interacción dentro del modal */
+  position: relative;
+  z-index: 2001; /* asegurar que esté sobre todo */
+}
 </style>
 </head>
 <body>
@@ -470,17 +482,37 @@ body.dark .hero::before{
   const modalDesde = document.getElementById('modalDesde');
   const modalColab = document.getElementById('modalColab');
 
-  function openDistrito(card){
+ function openDistrito(card){
     modalTitle.textContent = card.dataset.title;
     modalImg.src = card.dataset.img;
     modalImg.alt = card.dataset.title;
     modalDesde.textContent = `Desde: ${card.dataset.anio}`;
     modalColab.textContent = `Colaboradores: ${card.dataset.colab}`;
-    if(typeof modal.showModal === 'function'){ modal.showModal(); }
-    else{ modal.setAttribute('open',''); } // fallback
-    // devolver foco al cerrar
+    
+    // abrir modal
+    if(typeof modal.showModal === 'function'){ 
+        modal.showModal(); 
+    } else { 
+        modal.setAttribute('open',''); 
+    }
+    
+    // agregar clase blur a body
+    document.body.classList.add('modal-open');
+
+    // guardar foco para volver al cerrar
     lastFocus = card;
-  }
+}
+
+function closeModal(){
+    if(typeof modal.close === 'function'){ try{ modal.close(); }catch{} }
+    modal.removeAttribute('open');
+
+    // quitar blur al cerrar
+    document.body.classList.remove('modal-open');
+
+    if(lastFocus) lastFocus.focus();
+}
+
 
   let lastFocus = null;
   document.getElementById('districtGrid').addEventListener('click', e=>{
