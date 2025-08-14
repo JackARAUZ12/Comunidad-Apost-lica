@@ -7,30 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Comunidad Apostólica</title>
     <style>
-        /* Estilo general */
+        /* Estilo base */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #F5F5F5;
             margin: 0;
             padding: 0;
+            background-color: #F9F9F9;
             color: #333333;
             box-sizing: border-box;
         }
 
-        h1, h2, h3, h4 {
+        h1, h2, h3, h4, h5, h6 {
             font-family: 'Georgia', serif;
         }
 
-        /* Header / Menú superior */
+        /* Header */
         header {
-            background-color: #1E1E1E;
+            background-color: #1C1C1C;
             color: #D4AF37;
-            padding: 20px 40px;
+            padding: 15px 30px;
             position: fixed;
+            width: 100%;
             top: 0;
             left: 0;
-            width: 100%;
-            z-index: 1000;
+            z-index: 999;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -39,10 +39,11 @@
         }
 
         header .logo {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             letter-spacing: 2px;
             cursor: pointer;
+            text-transform: uppercase;
         }
 
         header nav a {
@@ -51,11 +52,13 @@
             text-decoration: none;
             font-size: 18px;
             font-weight: 600;
-            transition: all 0.3s;
+            text-transform: capitalize;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         header nav a:hover {
             color: #FFFFFF;
+            transform: translateY(-3px);
             border-bottom: 2px solid #D4AF37;
         }
 
@@ -66,13 +69,14 @@
             color: #D4AF37;
         }
 
-        @media screen and (max-width: 768px) {
+        @media (max-width: 768px) {
             header nav {
                 display: none;
                 flex-direction: column;
-                text-align: center;
                 width: 100%;
+                background-color: #333333;
                 padding: 20px 0;
+                text-align: center;
             }
 
             header nav a {
@@ -95,36 +99,37 @@
             background-position: center;
             color: #FFF;
             text-align: center;
-            padding: 150px 20px;
+            padding: 120px 20px;
             position: relative;
             background-attachment: fixed;
-            transition: all 0.3s ease-in-out;
+            transition: all 0.5s ease;
         }
 
         .hero::before {
             content: '';
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
+            z-index: 1;
         }
 
         .hero h2 {
-            font-size: 60px;
+            font-size: 55px;
             font-weight: 800;
             margin: 0;
-            z-index: 1;
-            transition: transform 0.3s ease-in-out;
+            z-index: 2;
+            animation: fadeIn 1s ease-out;
         }
 
         .hero p {
-            font-size: 20px;
-            max-width: 700px;
+            font-size: 22px;
+            max-width: 800px;
             margin: 20px auto 30px;
-            z-index: 1;
-            transition: opacity 0.3s ease-in-out;
+            z-index: 2;
+            animation: fadeIn 1.5s ease-out;
         }
 
         .hero a {
@@ -135,101 +140,89 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: 600;
-            transition: all 0.3s ease-in-out;
-            z-index: 1;
+            z-index: 2;
+            transition: all 0.3s ease;
         }
 
         .hero a:hover {
             background-color: #C79C2E;
             transform: translateY(-5px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Sección de destacados */
+        /* Animación Fade In */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sección de Destacados */
         .destacados {
             display: flex;
             justify-content: space-evenly;
-            margin: 80px 0;
+            margin: 100px 0;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 40px;
         }
 
         .destacado {
             background-color: #FFF;
             width: 30%;
-            min-width: 280px;
+            min-width: 300px;
             padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
             text-align: center;
-            transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-out;
             cursor: pointer;
         }
 
         .destacado:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
         }
 
         .destacado h3 {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
             margin-bottom: 20px;
-            color: #333;
+            color: #333333;
+            letter-spacing: 1px;
         }
 
         .destacado p {
             font-size: 16px;
-            color: #555;
+            color: #777777;
             line-height: 1.6;
         }
 
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: #FFF;
-            padding: 40px 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        footer .social-icons a {
-            color: #D4AF37;
-            margin: 0 20px;
-            font-size: 30px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        footer .social-icons a:hover {
-            color: #FFF;
-            transform: translateY(-5px);
-        }
-
-        footer .social-icons {
-            margin-top: 20px;
-        }
-
-        /* Sección Testimonios */
+        /* Testimonios */
         .testimonios {
-            background-color: #F5F5F5;
-            padding: 80px 20px;
+            background-color: #F2F2F2;
+            padding: 100px 20px;
             text-align: center;
         }
 
         .testimonios h2 {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: bold;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
+            color: #333;
         }
 
         .testimonio {
             display: inline-block;
             width: 30%;
-            padding: 20px;
+            padding: 25px;
             background-color: #FFF;
             border-radius: 10px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin: 10px;
             transition: all 0.3s ease-in-out;
             cursor: pointer;
@@ -237,39 +230,55 @@
 
         .testimonio:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
         }
 
         .testimonio p {
             font-size: 16px;
-            color: #777;
-            margin-bottom: 20px;
+            color: #555555;
+            line-height: 1.6;
         }
 
         .testimonio .nombre {
             font-size: 18px;
             font-weight: 600;
-            color: #333;
+            color: #333333;
+            margin-top: 15px;
         }
 
-        /* Estilo para botones */
-        .btn-primary {
-            background-color: #D4AF37;
+        /* Footer */
+        footer {
+            background-color: #1C1C1C;
             color: #FFF;
-            padding: 15px 30px;
-            font-size: 18px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease-in-out;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-primary:hover {
-            background-color: #C79C2E;
+        footer p {
+            font-size: 16px;
+            color: #D4AF37;
+            margin-bottom: 15px;
+        }
+
+        footer .social-icons a {
+            color: #D4AF37;
+            margin: 0 20px;
+            font-size: 30px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        footer .social-icons a:hover {
+            color: #fff;
             transform: translateY(-5px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
+        /* Animación de Fondo */
+        .hero:hover {
+            background-image: url('imagen-fondo-hover.jpg');
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 
@@ -294,49 +303,48 @@
     </div>
 
     <!-- Sección de Destacados -->
-    <section class="destacados">
+    <div class="destacados">
         <div class="destacado">
-            <h3>Eventos Increíbles</h3>
-            <p>Únete a nuestras actividades, misiones y retiros espirituales. Juntos, hacemos de cada evento una experiencia transformadora.</p>
+            <h3>Eventos</h3>
+            <p>Participa en nuestros eventos y actividades que transforman la comunidad.</p>
         </div>
         <div class="destacado">
-            <h3>Artículos y Reflexiones</h3>
-            <p>Explora nuestro blog con contenido profundo y edificante. Reflexiones diarias, historias inspiradoras y enseñanzas para tu vida.</p>
+            <h3>Blog</h3>
+            <p>Lee nuestros artículos y reflexiones que te inspirarán en tu caminar de fe.</p>
         </div>
         <div class="destacado">
-            <h3>Recursos Exclusivos</h3>
-            <p>Accede a materiales y recursos espirituales, desde libros hasta podcasts y videos, que te ayudarán a profundizar tu fe y conocimiento.</p>
+            <h3>Recursos</h3>
+            <p>Accede a materiales educativos que te ayudarán a profundizar en tu fe.</p>
         </div>
-    </section>
+    </div>
 
-    <!-- Sección Testimonios -->
-    <section class="testimonios">
+    <!-- Testimonios -->
+    <div class="testimonios">
         <h2>Lo que dicen nuestros miembros</h2>
         <div class="testimonio">
-            <p>"Esta comunidad ha cambiado mi vida, me ha dado esperanza y una nueva dirección en mi camino espiritual. ¡Gracias por todo!"</p>
-            <div class="nombre">María González</div>
+            <p>"La Comunidad Apostólica cambió mi vida, he encontrado un propósito y una familia que me apoya."</p>
+            <div class="nombre">Juan Pérez</div>
         </div>
         <div class="testimonio">
-            <p>"Los eventos que organizan son profundamente transformadores, no solo en mi fe, sino también en mi vida diaria."</p>
-            <div class="nombre">Carlos Fernández</div>
+            <p>"Me siento más cerca de Dios cada día. Aquí aprendí a vivir mi fe con intensidad."</p>
+            <div class="nombre">María Gómez</div>
         </div>
         <div class="testimonio">
-            <p>"Gracias a los recursos compartidos por la comunidad, he encontrado la paz interior que tanto buscaba."</p>
-            <div class="nombre">Luisa Méndez</div>
+            <p>"Un lugar lleno de amor y esperanza. Siempre hay algo nuevo que aprender."</p>
+            <div class="nombre">Carlos Rodríguez</div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer>
         <p>Comunidad Apostólica todos los derechos reservados 2025</p>
         <div class="social-icons">
-            <a href="https://www.facebook.com/profile.php?id=61556391214599" target="_blank">&#xf09a;</a> <!-- Facebook -->
-            <a href="#" target="_blank">&#xf16d;</a> <!-- Instagram -->
-            <a href="#" target="_blank">&#xf167;</a> <!-- YouTube -->
+            <a href="https://www.facebook.com/profile.php?id=61556391214599" target="_blank">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
         </div>
     </footer>
 
-    <!-- Script para menú hamburguesa -->
     <script>
         function toggleMenu() {
             const menu = document.getElementById('menu');
