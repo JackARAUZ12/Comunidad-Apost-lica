@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Comunidad Apostólica</title>
+    <style>
+        /* Estilo general */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FAF7F0;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Georgia', serif;
+        }
+
+        /* Header / Menú superior */
+        header {
+            background-color: #FFFFFF;
+            border-bottom: 2px solid #D4AF37;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+        }
+
+        header .logo {
+            color: #D4AF37;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        header nav {
+            display: inline-block;
+            float: right;
+        }
+
+        header nav a {
+            color: #333333;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: #D4AF37;
+        }
+
+        /* Menú hamburguesa (móvil) */
+        .menu-hamburguesa {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 768px) {
+            header nav {
+                display: none;
+                width: 100%;
+                text-align: center;
+            }
+
+            header nav a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .menu-hamburguesa {
+                display: inline-block;
+                float: right;
+            }
+
+            header nav.show {
+                display: block;
+            }
+        }
+
+        /* Sección principal (Hero) */
+        .hero {
+            background-image: url('imagen-fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #FFFFFF;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .hero a {
+            background-color: #D4AF37;
+            color: #FFFFFF;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .hero a:hover {
+            background-color: #C79C2E;
+        }
+
+        /* Sección de destacados */
+        .destacados {
+            display: flex;
+            justify-content: space-around;
+            margin: 50px 0;
+        }
+
+        .destacado {
+            background-color: #FFFFFF;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .destacado:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .destacado h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .destacado p {
+            font-size: 16px;
+            color: #777777;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2C2C2C;
+            color: #FFFFFF;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer .social-icons a {
+            color: #D4AF37;
+            margin: 0 15px;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer .social-icons a:hover {
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / Menú -->
+    <header>
+        <div class="logo">Comunidad Apostólica</div>
+        <div class="menu-hamburguesa" onclick="toggleMenu()">&#9776;</div>
+        <nav id="menu">
+            <a href="about.html">Quiénes somos</a>
+            <a href="team.html">Equipo</a>
+            <a href="sugerencias.html">Sugerencias</a>
+        </nav>
+    </header>
+
+    <!-- Sección Hero / Banner -->
+    <div class="hero">
+        <h2>Bienvenidos a la Comunidad Apostólica</h2>
+        <p>Nos dedicamos a fomentar el crecimiento espiritual y comunitario a través de actividades, recursos y colaboración.</p>
+        <a href="about.html">Conoce más sobre nosotros</a>
+    </div>
+
+    <!-- Sección de Destacados -->
+    <section class="destacados">
+        <div class="destacado">
+            <h3>Eventos</h3>
+            <p>Participa en nuestros eventos y actividades comunitarias. ¡Siempre hay algo nuevo para ti!</p>
+        </div>
+        <div class="destacado">
+            <h3>Blog</h3>
+            <p>Lee los artículos y reflexiones de nuestra comunidad. Encuentra inspiración y crecimiento personal.</p>
+        </div>
+        <div class="destacado">
+            <h3>Recursos</h3>
+            <p>Accede a recursos espirituales, libros y materiales que fortalecerán tu camino en la fe.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Comunidad Apostólica todos los derechos reservados 2025</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61556391214599" target="_blank">&#xf09a;</a> <!-- Facebook -->
+            <a href="#" target="_blank">&#xf16d;</a> <!-- Instagram -->
+            <a href="#" target="_blank">&#xf167;</a> <!-- YouTube -->
+        </div>
+    </footer>
+
+    <!-- Script para menú hamburguesa -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
+    </script>
+
+</body>
+
+</html>
