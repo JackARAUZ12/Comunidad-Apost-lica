@@ -7,18 +7,14 @@
 <meta name="description" content="Comunidad Apostólica Nicaragua - Fe, unidad y servicio en todo el país." />
 <style>
   :root{
-    --gold:#c19a3f;           
-    --white:#ffffff;          
-    --ink:#111111;            
+    --gold:#c19a3f;           /* color primario sólido */
+    --white:#ffffff;          /* color secundario sólido */
+    --ink:#111111;            /* texto principal */
     --ink-soft:#444;
     --shadow:0 10px 25px rgba(0,0,0,.15);
     --radius:20px;
-
-    /* colores modo oscuro */
     --bg-dark:#111;
     --text-dark:#eee;
-    --panel-dark:#1a1a1a;
-    --shadow-dark:0 10px 25px rgba(0,0,0,.5);
   }
 
   *{box-sizing:border-box}
@@ -32,23 +28,17 @@
     transition: background .3s, color .3s;
   }
 
-  body.dark{
-    background:var(--bg-dark);
-    color:var(--text-dark);
-  }
-
   /* ========= NAV SUPERIOR (rectángulo completo) ========= */
   header{
     position:sticky; top:0; z-index:999;
     background:var(--gold);
     box-shadow:var(--shadow);
-    display:flex; justify-content:center;
+    transition: background .3s;
   }
   .topbar{
     max-width:1200px; margin:0 auto;
     display:flex; align-items:center; justify-content:center;
     padding:14px 16px; min-height:64px;
-    position:relative;
   }
   .nav{
     display:flex; gap:18px; flex-wrap:wrap; justify-content:center; width:100%;
@@ -60,14 +50,6 @@
   }
   .nav a:focus-visible{outline:3px solid #000; outline-offset:3px}
   .nav a:hover{background:rgba(0,0,0,.25); transform:translateY(-2px)}
-
-  /* Toggle modo oscuro */
-  .dark-toggle{
-    position:absolute; right:12px; top:50%; transform:translateY(-50%);
-    cursor:pointer; font-size:1.2rem; color:#fff;
-    background:rgba(0,0,0,.2); border:none; padding:6px 10px; border-radius:12px;
-  }
-  .dark-toggle:hover{background:rgba(0,0,0,.35)}
 
   /* ========= HERO CON IMAGEN DETRÁS ========= */
   .hero{
@@ -117,13 +99,6 @@
   }
   .lead{max-width:950px; margin:6px auto 26px; text-align:center; color:var(--ink-soft)}
 
-  /* Paneles modo oscuro */
-  body.dark .panel{
-    background:var(--panel-dark);
-    border-color:var(--gold);
-    box-shadow:var(--shadow-dark);
-  }
-
   /* ========= QUIÉNES SOMOS / MISIÓN VISIÓN ========= */
   .grid-2{
     display:grid; grid-template-columns:repeat(2,1fr); gap:28px; align-items:start;
@@ -131,73 +106,6 @@
   .panel{
     background:#fff; border:2px solid var(--gold); border-radius:var(--radius);
     padding:24px; box-shadow:var(--shadow);
-  }
-
-  /* ========= DISTRITOS (tarjetas con imagen) ========= */
-  #distritos .cards{
-    display:grid; gap:18px;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  }
-  .card{
-    border:2px solid var(--gold); border-radius:16px; overflow:hidden; background:#fff;
-    box-shadow:var(--shadow); cursor:pointer; transform:translateZ(0); transition:transform .18s;
-  }
-  .card:hover{transform:translateY(-6px)}
-  .card img{width:100%; height:150px; object-fit:cover; display:block}
-  .card h3{margin:0; padding:14px 14px 10px; font-size:1.05rem}
-  .tag{
-    display:inline-block; margin:0 14px 16px; font-size:.85rem;
-    background:var(--gold); color:#fff; padding:6px 10px; border-radius:999px;
-  }
-
-  /* ========= MODAL (overlay por distrito) ========= */
-  .modal{
-    position:fixed; inset:0; display:none; place-items:center; padding:18px; z-index:2000;
-    background:rgba(0,0,0,.65);
-  }
-  .modal[open]{display:grid}
-  .modal-card{
-    width:min(560px, 92vw); background:#fff; border-radius:18px; overflow:hidden; box-shadow:var(--shadow);
-    border:2px solid var(--gold); transform:translateY(10px) scale(.98); animation:pop .2s ease-out forwards;
-  }
-  .modal-head{
-    display:flex; justify-content:space-between; align-items:center; padding:12px 14px; background:var(--gold); color:#fff;
-  }
-  .modal-body{padding:16px}
-  .modal-body img{width:100%; height:210px; object-fit:cover; border-radius:12px}
-  .meta{margin:12px 0 6px; color:var(--ink-soft)}
-  .pill{display:inline-block; background:#f4efe0; border:1px solid var(--gold); color:#7b5d12; padding:6px 10px; border-radius:999px; font-size:.85rem; margin-right:8px}
-  .close{
-    background:#0000; border:2px solid #fff; color:#fff; border-radius:10px; padding:6px 10px; font-weight:800; cursor:pointer;
-  }
-  .close:focus-visible{outline:3px solid #000; outline-offset:3px}
-
-  /* ========= EVENTOS PRÓXIMOS ========= */
-  #eventos .cards{
-    display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  }
-  .event{
-    border:2px solid var(--gold); border-radius:18px; overflow:hidden; background:#fff; box-shadow:var(--shadow);
-  }
-  .event img{width:100%; height:170px; object-fit:cover; display:block}
-  .event h4{margin:0; padding:14px; text-align:center}
-
-  /* ========= TESTIMONIOS ========= */
-  .testis{
-    display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  }
-  .testi{
-    background:#fafafa; border-left:6px solid var(--gold); border-radius:14px; padding:18px; box-shadow:var(--shadow); font-style:italic;
-  }
-  body.dark .testi{background:#222; color:#eee; border-left:6px solid var(--gold); box-shadow:var(--shadow-dark)}
-
-  /* ========= NAV INFERIOR (los mismos 4 botones) + FOOTER ========= */
-  .bottombar{
-    background:var(--gold); padding:16px; box-shadow:var(--shadow);
-  }
-  .bottombar .nav a{background:rgba(0,0,0,.10)}
-  footer{
-    text-align:center; padding:22px 14px; color:#fff; background:#111;
   }
 
   /* ========= ANIMACIONES / SCROLL REVEAL ========= */
@@ -215,6 +123,13 @@
   @media (max-width:860px){
     .grid-2{grid-template-columns:1fr}
   }
+
+  /* ===== MODO OSCURO ===== */
+  body.dark{background:var(--bg-dark); color:var(--text-dark)}
+  body.dark .panel{background:#222; border-color:var(--gold)}
+  body.dark header{background:#8c722b}
+  body.dark .cta{background:#8c722b}
+  body.dark .hero-inner{color:#fff}
 </style>
 </head>
 <body>
@@ -227,9 +142,8 @@
       <a href="historia.html">Historia</a>
       <a href="sugerencias.html">Sugerencias</a>
       <a href="colaborar.html">Colaborar</a>
+      <button id="darkToggle" aria-label="Activar modo oscuro" style="margin-left:16px; padding:6px 12px; border:none; border-radius:10px; cursor:pointer;">🌓</button>
     </nav>
-    <!-- Toggle modo oscuro -->
-    <button class="dark-toggle" aria-label="Alternar modo oscuro">🌙</button>
   </div>
 </header>
 
@@ -263,13 +177,129 @@
   </div>
 </section>
 
-<!-- ======= DISTRITOS ACTIVOS ======= -->
+<script>
+  // ===== Scroll Reveal =====
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  revealEls.forEach(el=>io.observe(el));
+
+  // ===== Modo oscuro =====
+  const darkToggle = document.getElementById('darkToggle');
+  darkToggle.addEventListener('click', ()=>{
+    document.body.classList.toggle('dark');
+    const dark = document.body.classList.contains('dark');
+    darkToggle.setAttribute('aria-label', dark ? 'Desactivar modo oscuro' : 'Activar modo oscuro');
+  });
+</script>
+
+  <!-- ======= DISTRITOS ACTIVOS ======= -->
 <section id="distritos" class="reveal" aria-labelledby="t-distritos">
   <h2 id="t-distritos">Distritos Activos</h2>
   <p class="lead">Explora los distritos en los que actualmente estamos trabajando. Haz clic en un distrito para ver colaboradores y año de inicio.</p>
 
   <div class="cards" id="districtGrid">
-    <!-- Tarjetas de distrito aquí (igual que tu HTML original) -->
+    <!-- NOTA: las imágenes deben estar en la raíz con nombres d1.jpg, d2.jpg, ... -->
+    <article class="card" tabindex="0"
+      data-id="1" data-img="d1.jpg"
+      data-title="Distrito 1"
+      data-colab="Hno Roger Romero, Hno Cristofer Tercero, Hna Jeymi Mejia"
+      data-anio="2024">
+      <img src="d1.jpg" alt="Distrito 1" />
+      <h3>Distrito 1</h3>
+      <span class="tag">Activo</span>
+    </article>
+    <article class="card" tabindex="0"
+      data-id="2" data-img="d2.jpg"
+      data-title="Distrito 2"
+      data-colab="Hno Saul Alvarez, Hna Belen Matamoros"
+      data-anio="2024">
+      <img src="d2.jpg" alt="Distrito 2" />
+      <h3>Distrito 2</h3>
+      <span class="tag">Activo</span>
+    </article>
+    <article class="card" tabindex="0"
+      data-id="3" data-img="d3.jpg"
+      data-title="Distrito 3"
+      data-colab="Hno Jack Arauz, Hna Juset Orozco, Hna Ester Alemán"
+      data-anio="2024">
+      <img src="d3.jpg" alt="Distrito 3" />
+      <h3>Distrito 3</h3>
+      <span class="tag">Activo</span>
+    </article>
+    <article class="card" tabindex="0"
+      data-id="4" data-img="d4.jpg"
+      data-title="Distrito 4"
+      data-colab="Hna Loyda Arias"
+      data-anio="2024">
+      <img src="d4.jpg" alt="Distrito 4" />
+      <h3>Distrito 4</h3>
+      <span class="tag">Activo</span>
+    </article>
+    <article class="card" tabindex="0"
+      data-id="5" data-img="d5.jpg"
+      data-title="Distrito 5"
+      data-colab="Hna Yosselin Gonzalez"
+      data-anio="2024">
+      <img src="d5.jpg" alt="Distrito 5" />
+      <h3>Distrito 5</h3>
+      <span class="tag">Activo</span>
+    </article>
+    <article class="card" tabindex="0"
+      data-id="8" data-img="d8.jpg"
+      data-title="Distrito 8"
+      data-colab="Hno Joan Ortega"
+      data-anio="2024">
+      <img src="d8.jpg" alt="Distrito 8" />
+      <h3>Distrito 8</h3>
+      <span class="tag">Activo</span>
+    </article>
+    <article class="card" tabindex="0"
+      data-id="9" data-img="d9.jpg"
+      data-title="Distrito 9"
+      data-colab="Hna Milhy Perez, Hno Cristhian Lopez"
+      data-anio="2025">
+      <img src="d9.jpg" alt="Distrito 9" />
+      <h3>Distrito 9</h3>
+      <span class="tag">Activo</span>
+    </article>
+    <article class="card" tabindex="0"
+      data-id="10" data-img="d10.jpg"
+      data-title="Distrito 10"
+      data-colab="Hna Sol Nohemi, Hna Andrea, Hno Johnny Solorzano"
+      data-anio="2024">
+      <img src="d10.jpg" alt="Distrito 10" />
+      <h3>Distrito 10</h3>
+      <span class="tag">Activo</span>
+    </article>
+    <article class="card" tabindex="0"
+      data-id="11" data-img="d11.jpg"
+      data-title="Distrito 11"
+      data-colab="Hna Josmary Castillo, Hna Danieska Duarte"
+      data-anio="2024">
+      <img src="d11.jpg" alt="Distrito 11" />
+      <h3>Distrito 11</h3>
+      <span class="tag">Activo</span>
+    </article>
+    <article class="card" tabindex="0"
+      data-id="12" data-img="d12.jpg"
+      data-title="Distrito 12"
+      data-colab="Hna Brenda, Hno Anjhonny Salgado"
+      data-anio="2024">
+      <img src="d12.jpg" alt="Distrito 12" />
+      <h3>Distrito 12</h3>
+      <span class="tag">Activo</span>
+    </article>
+    <article class="card" tabindex="0"
+      data-id="15" data-img="d15.jpg"
+      data-title="Distrito 15"
+      data-colab="Pr Jonathan Sanchez"
+      data-anio="2024">
+      <img src="d15.jpg" alt="Distrito 15" />
+      <h3>Distrito 15</h3>
+      <span class="tag">Activo</span>
+    </article>
   </div>
 </section>
 
@@ -296,7 +326,22 @@
   <h2 id="t-eventos">Eventos Próximos</h2>
   <p class="lead">Acompáñanos en lo que viene. ¡Te esperamos!</p>
   <div class="cards">
-    <!-- Eventos aquí (igual que tu HTML original) -->
+    <article class="event">
+      <img src="evento1.jpg" alt="Apostólicos en acción 2025 (Talentos)" />
+      <h4>Apostólicos en acción 2025 (TALENTOS)</h4>
+    </article>
+    <article class="event">
+      <img src="evento2.jpg" alt="Campamento Nacional de Jóvenes 2025" />
+      <h4>Campamento Nacional de Jovenes 2025</h4>
+    </article>
+    <article class="event">
+      <img src="evento3.jpg" alt="Segundo Cortometraje 2025" />
+      <h4>Segundo Cortometraje 2025</h4>
+    </article>
+    <article class="event">
+      <img src="evento4.jpg" alt="Evento Secreto" />
+      <h4>Evento secreto</h4>
+    </article>
   </div>
 </section>
 
@@ -325,13 +370,6 @@
 </footer>
 
 <script>
-  // ===== Scroll Reveal =====
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
-  },{threshold:.12});
-  revealEls.forEach(el=>io.observe(el));
-
   // ===== Modal Distrito =====
   const modal = document.getElementById('modalDistrito');
   const closeModalBtn = document.getElementById('closeModal');
@@ -348,22 +386,31 @@
     modalColab.textContent = `Colaboradores: ${card.dataset.colab}`;
     if(typeof modal.showModal === 'function'){ modal.showModal(); }
     else{ modal.setAttribute('open',''); }
+    lastFocus = card;
   }
-  closeModalBtn.addEventListener('click',()=>modal.close());
-  document.querySelectorAll('.card').forEach(card=>card.addEventListener('click',()=>openDistrito(card)));
 
-  // ===== Toggle Modo Oscuro =====
-  const toggle = document.querySelector('.dark-toggle');
-  const body = document.body;
-  const storedTheme = localStorage.getItem('theme');
-  if(storedTheme==='dark'){ body.classList.add('dark'); toggle.textContent='☀️'; }
-  toggle.addEventListener('click',()=>{
-    body.classList.toggle('dark');
-    if(body.classList.contains('dark')){ toggle.textContent='☀️'; localStorage.setItem('theme','dark'); }
-    else{ toggle.textContent='🌙'; localStorage.setItem('theme','light'); }
+  let lastFocus = null;
+  document.getElementById('districtGrid').addEventListener('click', e=>{
+    const card = e.target.closest('.card');
+    if(card) openDistrito(card);
   });
-</script>
 
+  document.getElementById('districtGrid').addEventListener('keydown', e=>{
+    const card = e.target.closest('.card');
+    if(card && (e.key==='Enter' || e.key===' ')){ e.preventDefault(); openDistrito(card); }
+  });
+
+  function closeModal(){
+    if(typeof modal.close === 'function'){ try{ modal.close(); }catch{} }
+    modal.removeAttribute('open');
+    if(lastFocus) lastFocus.focus();
+  }
+
+  closeModalBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e=>{ if(e.target === modal) closeModal(); });
+  window.addEventListener('keydown', e=>{ if(e.key==='Escape' && modal.hasAttribute('open')) closeModal(); });
+</script>
 </body>
 </html>
+
 
