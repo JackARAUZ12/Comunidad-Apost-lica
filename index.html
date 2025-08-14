@@ -13,8 +13,6 @@
     --ink-soft:#444;
     --shadow:0 10px 25px rgba(0,0,0,.15);
     --radius:20px;
-    --bg-dark:#111;
-    --text-dark:#eee;
   }
 
   *{box-sizing:border-box}
@@ -25,7 +23,6 @@
     color:var(--ink);
     background:var(--white);
     line-height:1.6;
-    transition: background .3s, color .3s;
   }
 
   /* ========= NAV SUPERIOR (rectángulo completo) ========= */
@@ -33,7 +30,6 @@
     position:sticky; top:0; z-index:999;
     background:var(--gold);
     box-shadow:var(--shadow);
-    transition: background .3s;
   }
   .topbar{
     max-width:1200px; margin:0 auto;
@@ -63,6 +59,7 @@
     z-index:-2;
   }
   .hero::after{
+    /* sutil malla de puntos para look digital */
     content:""; position:absolute; inset:0; pointer-events:none;
     background:
       radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px) 0 0/22px 22px;
@@ -108,6 +105,72 @@
     padding:24px; box-shadow:var(--shadow);
   }
 
+  /* ========= DISTRITOS (tarjetas con imagen) ========= */
+  #distritos .cards{
+    display:grid; gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  }
+  .card{
+    border:2px solid var(--gold); border-radius:16px; overflow:hidden; background:#fff;
+    box-shadow:var(--shadow); cursor:pointer; transform:translateZ(0); transition:transform .18s;
+  }
+  .card:hover{transform:translateY(-6px)}
+  .card img{width:100%; height:150px; object-fit:cover; display:block}
+  .card h3{margin:0; padding:14px 14px 10px; font-size:1.05rem}
+  .tag{
+    display:inline-block; margin:0 14px 16px; font-size:.85rem;
+    background:var(--gold); color:#fff; padding:6px 10px; border-radius:999px;
+  }
+
+  /* ========= MODAL (overlay por distrito) ========= */
+  .modal{
+    position:fixed; inset:0; display:none; place-items:center; padding:18px; z-index:2000;
+    background:rgba(0,0,0,.65);
+  }
+  .modal[open]{display:grid}
+  .modal-card{
+    width:min(560px, 92vw); background:#fff; border-radius:18px; overflow:hidden; box-shadow:var(--shadow);
+    border:2px solid var(--gold); transform:translateY(10px) scale(.98); animation:pop .2s ease-out forwards;
+  }
+  .modal-head{
+    display:flex; justify-content:space-between; align-items:center; padding:12px 14px; background:var(--gold); color:#fff;
+  }
+  .modal-body{padding:16px}
+  .modal-body img{width:100%; height:210px; object-fit:cover; border-radius:12px}
+  .meta{margin:12px 0 6px; color:var(--ink-soft)}
+  .pill{display:inline-block; background:#f4efe0; border:1px solid var(--gold); color:#7b5d12; padding:6px 10px; border-radius:999px; font-size:.85rem; margin-right:8px}
+  .close{
+    background:#0000; border:2px solid #fff; color:#fff; border-radius:10px; padding:6px 10px; font-weight:800; cursor:pointer;
+  }
+  .close:focus-visible{outline:3px solid #000; outline-offset:3px}
+
+  /* ========= EVENTOS PRÓXIMOS ========= */
+  #eventos .cards{
+    display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  }
+  .event{
+    border:2px solid var(--gold); border-radius:18px; overflow:hidden; background:#fff; box-shadow:var(--shadow);
+  }
+  .event img{width:100%; height:170px; object-fit:cover; display:block}
+  .event h4{margin:0; padding:14px; text-align:center}
+
+  /* ========= TESTIMONIOS ========= */
+  .testis{
+    display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  }
+  .testi{
+    background:#fafafa; border-left:6px solid var(--gold); border-radius:14px; padding:18px; box-shadow:var(--shadow); font-style:italic;
+  }
+
+  /* ========= NAV INFERIOR (los mismos 4 botones) + FOOTER ========= */
+  .bottombar{
+    background:var(--gold); padding:16px; box-shadow:var(--shadow);
+  }
+  .bottombar .nav a{background:rgba(0,0,0,.10)}
+  footer{
+    text-align:center; padding:22px 14px; color:#fff; background:#111;
+  }
+
   /* ========= ANIMACIONES / SCROLL REVEAL ========= */
   .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
   .reveal.on{opacity:1; transform:none}
@@ -123,13 +186,6 @@
   @media (max-width:860px){
     .grid-2{grid-template-columns:1fr}
   }
-
-  /* ===== MODO OSCURO ===== */
-  body.dark{background:var(--bg-dark); color:var(--text-dark)}
-  body.dark .panel{background:#222; border-color:var(--gold)}
-  body.dark header{background:#8c722b}
-  body.dark .cta{background:#8c722b}
-  body.dark .hero-inner{color:#fff}
 </style>
 </head>
 <body>
@@ -142,7 +198,6 @@
       <a href="historia.html">Historia</a>
       <a href="sugerencias.html">Sugerencias</a>
       <a href="colaborar.html">Colaborar</a>
-      <button id="darkToggle" aria-label="Activar modo oscuro" style="margin-left:16px; padding:6px 12px; border:none; border-radius:10px; cursor:pointer;">🌓</button>
     </nav>
   </div>
 </header>
@@ -177,24 +232,7 @@
   </div>
 </section>
 
-<script>
-  // ===== Scroll Reveal =====
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
-  },{threshold:.12});
-  revealEls.forEach(el=>io.observe(el));
-
-  // ===== Modo oscuro =====
-  const darkToggle = document.getElementById('darkToggle');
-  darkToggle.addEventListener('click', ()=>{
-    document.body.classList.toggle('dark');
-    const dark = document.body.classList.contains('dark');
-    darkToggle.setAttribute('aria-label', dark ? 'Desactivar modo oscuro' : 'Activar modo oscuro');
-  });
-</script>
-
-  <!-- ======= DISTRITOS ACTIVOS ======= -->
+<!-- ======= DISTRITOS ACTIVOS ======= -->
 <section id="distritos" class="reveal" aria-labelledby="t-distritos">
   <h2 id="t-distritos">Distritos Activos</h2>
   <p class="lead">Explora los distritos en los que actualmente estamos trabajando. Haz clic en un distrito para ver colaboradores y año de inicio.</p>
@@ -210,6 +248,7 @@
       <h3>Distrito 1</h3>
       <span class="tag">Activo</span>
     </article>
+
     <article class="card" tabindex="0"
       data-id="2" data-img="d2.jpg"
       data-title="Distrito 2"
@@ -219,6 +258,7 @@
       <h3>Distrito 2</h3>
       <span class="tag">Activo</span>
     </article>
+
     <article class="card" tabindex="0"
       data-id="3" data-img="d3.jpg"
       data-title="Distrito 3"
@@ -228,6 +268,7 @@
       <h3>Distrito 3</h3>
       <span class="tag">Activo</span>
     </article>
+
     <article class="card" tabindex="0"
       data-id="4" data-img="d4.jpg"
       data-title="Distrito 4"
@@ -237,6 +278,7 @@
       <h3>Distrito 4</h3>
       <span class="tag">Activo</span>
     </article>
+
     <article class="card" tabindex="0"
       data-id="5" data-img="d5.jpg"
       data-title="Distrito 5"
@@ -246,6 +288,7 @@
       <h3>Distrito 5</h3>
       <span class="tag">Activo</span>
     </article>
+
     <article class="card" tabindex="0"
       data-id="8" data-img="d8.jpg"
       data-title="Distrito 8"
@@ -255,6 +298,7 @@
       <h3>Distrito 8</h3>
       <span class="tag">Activo</span>
     </article>
+
     <article class="card" tabindex="0"
       data-id="9" data-img="d9.jpg"
       data-title="Distrito 9"
@@ -264,6 +308,7 @@
       <h3>Distrito 9</h3>
       <span class="tag">Activo</span>
     </article>
+
     <article class="card" tabindex="0"
       data-id="10" data-img="d10.jpg"
       data-title="Distrito 10"
@@ -273,6 +318,7 @@
       <h3>Distrito 10</h3>
       <span class="tag">Activo</span>
     </article>
+
     <article class="card" tabindex="0"
       data-id="11" data-img="d11.jpg"
       data-title="Distrito 11"
@@ -282,6 +328,7 @@
       <h3>Distrito 11</h3>
       <span class="tag">Activo</span>
     </article>
+
     <article class="card" tabindex="0"
       data-id="12" data-img="d12.jpg"
       data-title="Distrito 12"
@@ -291,6 +338,7 @@
       <h3>Distrito 12</h3>
       <span class="tag">Activo</span>
     </article>
+
     <article class="card" tabindex="0"
       data-id="15" data-img="d15.jpg"
       data-title="Distrito 15"
@@ -370,6 +418,13 @@
 </footer>
 
 <script>
+  // ===== Scroll Reveal =====
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  revealEls.forEach(el=>io.observe(el));
+
   // ===== Modal Distrito =====
   const modal = document.getElementById('modalDistrito');
   const closeModalBtn = document.getElementById('closeModal');
@@ -385,7 +440,8 @@
     modalDesde.textContent = `Desde: ${card.dataset.anio}`;
     modalColab.textContent = `Colaboradores: ${card.dataset.colab}`;
     if(typeof modal.showModal === 'function'){ modal.showModal(); }
-    else{ modal.setAttribute('open',''); }
+    else{ modal.setAttribute('open',''); } // fallback
+    // devolver foco al cerrar
     lastFocus = card;
   }
 
@@ -394,7 +450,7 @@
     const card = e.target.closest('.card');
     if(card) openDistrito(card);
   });
-
+  // accesible con Enter/Espacio
   document.getElementById('districtGrid').addEventListener('keydown', e=>{
     const card = e.target.closest('.card');
     if(card && (e.key==='Enter' || e.key===' ')){ e.preventDefault(); openDistrito(card); }
@@ -405,7 +461,6 @@
     modal.removeAttribute('open');
     if(lastFocus) lastFocus.focus();
   }
-
   closeModalBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', e=>{ if(e.target === modal) closeModal(); });
   window.addEventListener('keydown', e=>{ if(e.key==='Escape' && modal.hasAttribute('open')) closeModal(); });
@@ -413,4 +468,4 @@
 </body>
 </html>
 
-
+    
