@@ -1,186 +1,285 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comunidad Apostólica Nicaragua</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comunidad Apostólica Nicaragua</title>
+<style>
+    :root {
+        --color-primario: #c19a3f; /* Dorado */
+        --color-secundario: #ffffff; /* Blanco */
+        --color-texto: #222;
+    }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f4f4;
-            color: #333;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+    }
 
-        /* Encabezado */
-        header {
-            background: linear-gradient(90deg, #c19a3f, #f1d17a, #c19a3f);
-            padding: 20px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            animation: fadeInDown 1s ease-in-out;
-        }
+    body {
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        color: var(--color-texto);
+        background: var(--color-secundario);
+    }
 
-        @keyframes fadeInDown {
-            from {opacity: 0; transform: translateY(-20px);}
-            to {opacity: 1; transform: translateY(0);}
-        }
+    /* Header */
+    header {
+        background-color: var(--color-primario);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            background: rgba(0,0,0,0.3);
-            padding: 12px 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
+    nav a {
+        color: var(--color-secundario);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 15px;
+        transition: 0.3s ease;
+    }
 
-        nav a:hover {
-            background: rgba(0,0,0,0.6);
-            transform: scale(1.05);
-        }
+    nav a:hover {
+        background: rgba(0,0,0,0.2);
+        border-radius: 6px;
+    }
 
-        /* Secciones */
-        section {
-            max-width: 1200px;
-            margin: auto;
-            padding: 40px 20px;
-            line-height: 1.6;
-        }
+    /* Hero */
+    .hero {
+        background-color: var(--color-secundario);
+        text-align: center;
+        padding: 80px 20px;
+        animation: fadeIn 1s ease-in-out;
+    }
 
-        section h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #c19a3f;
-            animation: fadeIn 1.2s ease-in-out;
-        }
+    .hero h1 {
+        font-size: 2.8rem;
+        color: var(--color-primario);
+        margin-bottom: 20px;
+    }
 
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: auto;
+        line-height: 1.6;
+    }
 
-        /* Galería */
-        .galeria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
+    .btn {
+        display: inline-block;
+        margin-top: 20px;
+        background: var(--color-primario);
+        color: var(--color-secundario);
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s ease;
+    }
 
-        .galeria img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
+    .btn:hover {
+        background: #a98630;
+    }
 
-        .galeria img:hover {
-            transform: scale(1.05);
-        }
+    /* Secciones generales */
+    section {
+        max-width: 1200px;
+        margin: auto;
+        padding: 60px 20px;
+    }
 
-        /* Footer */
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 30px;
-            font-size: 14px;
-        }
+    section h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: var(--color-primario);
+        font-size: 2rem;
+    }
 
-        /* Adaptabilidad */
-        @media (max-width: 768px) {
-            nav {
-                gap: 15px;
-            }
-            .galeria img {
-                height: 180px;
-            }
-        }
-    </style>
+    section p {
+        text-align: center;
+        max-width: 900px;
+        margin: auto;
+        line-height: 1.7;
+    }
+
+    /* Tarjetas de distritos */
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .card {
+        background: var(--color-secundario);
+        padding: 20px;
+        border: 2px solid var(--color-primario);
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    /* Galería */
+    .galeria {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .galeria img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        transition: 0.3s ease;
+    }
+
+    .galeria img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Testimonios */
+    .testimonios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .testimonio {
+        background: #f9f9f9;
+        padding: 20px;
+        border-left: 5px solid var(--color-primario);
+        border-radius: 8px;
+        font-style: italic;
+    }
+
+    /* Botón flotante */
+    .contacto-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--color-primario);
+        color: var(--color-secundario);
+        padding: 15px;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        transition: 0.3s ease;
+    }
+
+    .contacto-btn:hover {
+        background: #a98630;
+    }
+
+    /* Footer */
+    footer {
+        background: var(--color-primario);
+        color: var(--color-secundario);
+        text-align: center;
+        padding: 15px;
+        margin-top: 30px;
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+</style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <nav>
-            <a href="equipo.html">Nuestro equipo</a>
-            <a href="historia.html">Historia</a>
-            <a href="sugerencias.html">Sugerencias</a>
-            <a href="colaborar.html">Colaborar</a>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <a href="equipo.html">Nuestro equipo</a>
+        <a href="historia.html">Historia</a>
+        <a href="sugerencias.html">Sugerencias</a>
+        <a href="colaborar.html">Colaborar</a>
+    </nav>
+</header>
 
-    <!-- Quiénes somos -->
-    <section>
-        <h2>Quiénes Somos</h2>
-        <p>
-            Comunidad Apostólica Nicaragua es un ministerio dedicado a llevar el mensaje de Jesucristo
-            a todo el país, fortaleciendo la fe y unidad entre las iglesias y creyentes. Nuestro objetivo
-            es servir, inspirar y conectar a todos los que buscan crecer espiritualmente y compartir el
-            Evangelio.
-        </p>
-    </section>
+<!-- Hero -->
+<section class="hero">
+    <h1>Bienvenido a Comunidad Apostólica Nicaragua</h1>
+    <p>Unidos para extender el Reino de Dios en todo el país, llevando esperanza, amor y fe a cada rincón.</p>
+    <a href="#quienes" class="btn">Conócenos</a>
+</section>
 
-    <!-- Qué queremos lograr -->
-    <section>
-        <h2>Qué Queremos Lograr</h2>
-        <p>
-            Nuestra meta es cubrir todos los distritos de Nicaragua con actividades, cultos, campañas
-            evangelísticas y proyectos sociales, impactando tanto a creyentes como a aquellos que aún
-            no han conocido a Cristo. Queremos ver vidas transformadas y comunidades unidas en amor y fe.
-        </p>
-    </section>
+<!-- Quiénes somos -->
+<section id="quienes">
+    <h2>Quiénes Somos</h2>
+    <p>
+        Somos una comunidad cristiana comprometida con la enseñanza, adoración y servicio a nuestro prójimo. 
+        Organizamos eventos, campañas evangelísticas y actividades sociales en diferentes distritos de Nicaragua.
+    </p>
+</section>
 
-    <!-- Distritos cubiertos -->
-    <section>
-        <h2>Distritos en los que estamos activos</h2>
-        <ul>
-            <li>Distrito Norte</li>
-            <li>Distrito Central</li>
-            <li>Distrito Sur</li>
-            <li>Distrito Caribe</li>
-        </ul>
-    </section>
+<!-- Misión y visión -->
+<section>
+    <h2>Nuestra Misión y Visión</h2>
+    <p>
+        <strong>Misión:</strong> Alcanzar a todas las personas con el mensaje de Jesucristo, inspirando fe y unidad.  
+        <br><strong>Visión:</strong> Ser una comunidad modelo de amor, servicio y crecimiento espiritual en Nicaragua.
+    </p>
+</section>
 
-    <!-- Momentos populares -->
-    <section>
-        <h2>Momentos más populares de nuestra comunidad</h2>
-        <p>
-            Hemos tenido grandes eventos que marcaron nuestra historia, desde conferencias nacionales
-            hasta campañas de avivamiento donde miles de personas entregaron sus vidas a Cristo. Aquí
-            algunos momentos especiales:
-        </p>
-        <div class="galeria">
-            <img src="foto1.jpg" alt="Evento 1">
-            <img src="foto2.jpg" alt="Evento 2">
-            <img src="foto3.jpg" alt="Evento 3">
-            <img src="foto4.jpg" alt="Evento 4">
-        </div>
-    </section>
+<!-- Distritos -->
+<section>
+    <h2>Distritos Activos</h2>
+    <div class="cards">
+        <div class="card">Distrito Norte</div>
+        <div class="card">Distrito Central</div>
+        <div class="card">Distrito Sur</div>
+        <div class="card">Distrito Caribe</div>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        Todos los derechos reservados - Comunidad Apostólica Nicaragua 2025
-    </footer>
+<!-- Momentos populares -->
+<section>
+    <h2>Momentos Populares</h2>
+    <div class="galeria">
+        <img src="foto1.jpg" alt="Evento 1">
+        <img src="foto2.jpg" alt="Evento 2">
+        <img src="foto3.jpg" alt="Evento 3">
+        <img src="foto4.jpg" alt="Evento 4">
+    </div>
+</section>
+
+<!-- Testimonios -->
+<section>
+    <h2>Testimonios</h2>
+    <div class="testimonios">
+        <div class="testimonio">"Gracias a la comunidad, encontré paz y propósito en mi vida."</div>
+        <div class="testimonio">"Ver la obra de Dios a través de esta comunidad es inspirador."</div>
+    </div>
+</section>
+
+<!-- Botón flotante -->
+<a href="mailto:contacto@comunidadapostolica.com" class="contacto-btn">✉</a>
+
+<!-- Footer -->
+<footer>
+    Todos los derechos reservados - Comunidad Apostólica Nicaragua 2025
+</footer>
 
 </body>
 </html>
+
