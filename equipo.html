@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nuestro Equipo - Comunidad Apostólica</title>
+<meta name="description" content="Nuestro Equipo - Comunidad Apostólica Nicaragua" />
+<style>
+  :root{
+    --gold:#c19a3f;
+    --white:#ffffff;
+    --black:#111;
+    --gray:#444;
+    --shadow:0 10px 25px rgba(0,0,0,.15);
+    --radius:16px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0}
+  html,body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif; color:var(--black); background:var(--white); line-height:1.6;}
+
+  /* HEADER */
+  header{
+    position:sticky; top:0; z-index:999;
+    background:var(--gold);
+    display:flex; justify-content:center; align-items:center;
+    padding:12px 16px; gap:20px;
+  }
+  header button, header a{
+    background:rgba(0,0,0,.1); color:var(--white); border:none; border-radius:12px; padding:10px 16px; font-weight:700; cursor:pointer;
+    transition:transform .2s,background .2s;
+  }
+  header button:hover, header a:hover{background:rgba(0,0,0,.25); transform:translateY(-2px);}
+
+  /* TITULO */
+  h1.title{ text-align:center; font-size:clamp(2rem,4vw+1rem,3.5rem); margin:40px 0; color:var(--gold); }
+
+  /* SECCION EQUIPO */
+  .team{
+    max-width:1200px; margin:auto; display:grid; gap:24px; padding:24px; 
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  }
+
+  /* TIPOS DE CUADRO */
+  .card-general{
+    background:var(--gold); color:#fff; border-radius:var(--radius); padding:20px; text-align:center; box-shadow:var(--shadow);
+  }
+  .card-admin{
+    background:#f4efe0; color:var(--black); border-radius:var(--radius); padding:18px; text-align:center; box-shadow:var(--shadow);
+  }
+  .card-colab{
+    background:#fafafa; color:var(--black); border-radius:var(--radius); padding:16px; text-align:center; box-shadow:var(--shadow);
+  }
+
+  .card img{width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:12px;}
+  .card h3{margin-bottom:6px; font-size:1.2rem;}
+  .card p{margin:0; font-size:.95rem; opacity:.85;}
+
+  /* MODO NOCHE */
+  body.night{background:#111; color:#fff;}
+  body.night .card-admin{background:#333; color:#fff;}
+  body.night .card-colab{background:#222; color:#fff;}
+  body.night header{background:#333;}
+</style>
+</head>
+<body>
+
+<header>
+  <button id="nightMode">🌙</button>
+  <a href="index.html">Inicio</a>
+</header>
+
+<h1 class="title">NUESTRO EQUIPO</h1>
+
+<!-- ADMINISTRADORES GENERALES -->
+<div class="team">
+  <div class="card card-general">
+    <img src="jack.jpg" alt="Jack Arauz">
+    <h3>Jack Arauz</h3>
+    <p>Administrador General</p>
+  </div>
+  <div class="card card-general">
+    <img src="juset.jpg" alt="Juset Orozco">
+    <h3>Juset Orozco</h3>
+    <p>Administradora General</p>
+  </div>
+  <div class="card card-general">
+    <img src="jonathan.jpg" alt="Pr Jonathan Sanchez">
+    <h3>Pr Jonathan Sanchez</h3>
+    <p>Administrador Distrito #15</p>
+  </div>
+</div>
+
+<!-- ADMINISTRADORES DE DISTRITO -->
+<div class="team">
+  <div class="card card-admin">
+    <img src="joan.jpg" alt="Hno Joan Ortega">
+    <h3>Hno Joan Ortega</h3>
+    <p>Administrador Distrito #8</p>
+  </div>
+  <div class="card card-admin">
+    <img src="arlen.jpg" alt="Hna Arlen Quezada">
+    <h3>Hna Arlen Quezada</h3>
+    <p>Administradora Distrito #2</p>
+  </div>
+  <div class="card card-admin">
+    <img src="milhy.jpg" alt="Hna Milhy Perez">
+    <h3>Hna Milhy Perez</h3>
+    <p>Administradora Distrito #9</p>
+  </div>
+  <div class="card card-admin">
+    <img src="josmary.jpg" alt="Hna Josmary Castillo">
+    <h3>Hna Josmary Castillo</h3>
+    <p>Administradora Distrito #11</p>
+  </div>
+  <div class="card card-admin">
+    <img src="loyda.jpg" alt="Hna Loyda Arias">
+    <h3>Hna Loyda Arias</h3>
+    <p>Administradora Distrito #4</p>
+  </div>
+  <div class="card card-admin">
+    <img src="ester.jpg" alt="Hna Ester Aleman">
+    <h3>Hna Ester Aleman</h3>
+    <p>Administradora Distrito #3</p>
+  </div>
+</div>
+
+<!-- COLABORADORES -->
+<div class="team">
+  <div class="card card-colab">
+    <img src="andrea.jpg" alt="Hna Andrea">
+    <h3>Hna Andrea</h3>
+    <p>Colaboradora Distrito #10</p>
+  </div>
+  <div class="card card-colab">
+    <img src="jeymi.jpg" alt="Hna Jeymi Mejia">
+    <h3>Hna Jeymi Mejia</h3>
+    <p>Colaboradora Distrito #1</p>
+  </div>
+  <div class="card card-colab">
+    <img src="cristofer.jpg" alt="Hno Cristofer Tercero">
+    <h3>Hno Cristofer Tercero</h3>
+    <p>Colaborador Distrito #1</p>
+  </div>
+  <div class="card card-colab">
+    <img src="roger.jpg" alt="Hno Roger Romero">
+    <h3>Hno Roger Romero</h3>
+    <p>Colaborador Distrito #1</p>
+  </div>
+  <div class="card card-colab">
+    <img src="sol.jpg" alt="Hna Sol Nohemi">
+    <h3>Hna Sol Nohemi</h3>
+    <p>Colaboradora Distrito #10</p>
+  </div>
+  <div class="card card-colab">
+    <img src="danieska.jpg" alt="Hna Danieska Duarte">
+    <h3>Hna Danieska Duarte</h3>
+    <p>Colaboradora Distrito #11</p>
+  </div>
+  <div class="card card-colab">
+    <img src="anjhoni.jpg" alt="Hno Anjhoni Salgado">
+    <h3>Hno Anjhoni Salgado</h3>
+    <p>Colaborador Distrito #12</p>
+  </div>
+  <div class="card card-colab">
+    <img src="brenda.jpg" alt="Hna Brenda">
+    <h3>Hna Brenda</h3>
+    <p>Colaboradora Distrito #12</p>
+  </div>
+  <div class="card card-colab">
+    <img src="saul.jpg" alt="Hno Saul Alvarez">
+    <h3>Hno Saul Alvarez</h3>
+    <p>Colaborador Distrito #2</p>
+  </div>
+  <div class="card card-colab">
+    <img src="belen.jpg" alt="Hna Belen Matamoros">
+    <h3>Hna Belen Matamoros</h3>
+    <p>Colaboradora Distrito #2</p>
+  </div>
+  <div class="card card-colab">
+    <img src="emily.jpg" alt="Hna Emily Tenorio">
+    <h3>Hna Emily Tenorio</h3>
+    <p>Colaboradora Distrito #9</p>
+  </div>
+  <div class="card card-colab">
+    <img src="yosselin.jpg" alt="Hna Yosselin Gonzalez">
+    <h3>Hna Yosselin Gonzalez</h3>
+    <p>Colaboradora Distrito #5</p>
+  </div>
+  <div class="card card-colab">
+    <img src="michelt.jpg" alt="Hna Michelt">
+    <h3>Hna Michelt</h3>
+    <p>Colaboradora Distrito #2</p>
+  </div>
+  <div class="card card-colab">
+    <img src="johnny.jpg" alt="Hno Johnny Solorzano">
+    <h3>Hno Johnny Solorzano</h3>
+    <p>Colaborador Distrito #10</p>
+  </div>
+  <div class="card card-colab">
+    <img src="cristhian.jpg" alt="Hno Cristhian Lopez">
+    <h3>Hno Cristhian Lopez</h3>
+    <p>Colaborador Distrito #9</p>
+  </div>
+</div>
+
+<script>
+  const nightBtn = document.getElementById('nightMode');
+  nightBtn.addEventListener('click', ()=>{ document.body.classList.toggle('night'); });
+</script>
+
+</body>
+</html>
