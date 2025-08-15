@@ -41,41 +41,22 @@
   }
 
   /* TIPOS DE CUADRO */
-  .card-general{
-    background:var(--gold); color:#fff; border-radius:var(--radius); padding:20px; text-align:center; box-shadow:var(--shadow);
-  }
-  .card-admin{
-    background:#f4efe0; color:var(--black); border-radius:var(--radius); padding:18px; text-align:center; box-shadow:var(--shadow);
-  }
-  .card-colab{
-    background:#fafafa; color:var(--black); border-radius:var(--radius); padding:16px; text-align:center; box-shadow:var(--shadow);
-  }
-
-  /* CARD BASE */
   .card{
-    border-radius:var(--radius);
-    overflow:hidden;
+    border-radius:var(--radius); text-align:center; box-shadow:var(--shadow); transition:transform .3s;
     cursor:pointer;
-    transform:translateZ(0);
-    transition: transform 0.25s ease, box-shadow 0.25s ease; /* transición suave */
+  }
+  .card:hover, .card:active{
+    transform:translateY(-5px);
   }
 
-  /* hover en PC */
-  .card:hover{
-    transform:translateY(-6px) scale(1.02);
-    box-shadow:0 14px 28px rgba(0,0,0,0.25);
-  }
-
-  /* touch en móviles */
-  .card:active{
-    transform:translateY(-6px) scale(1.02);
-    box-shadow:0 14px 28px rgba(0,0,0,0.25);
-  }
+  .card-general{ background:var(--gold); color:#fff; padding:20px; }
+  .card-admin{ background:#f4efe0; color:var(--black); padding:18px; }
+  .card-colab{ background:#fafafa; color:var(--black); padding:16px; }
 
   .card img{
     width:100%;
     max-height:220px;
-    object-fit:contain; /* se ve toda la imagen sin recortar */
+    object-fit:contain;
     border-radius:12px;
     margin-bottom:12px;
     background-color:#eee;
@@ -89,6 +70,35 @@
   body.night .card-admin{background:#333; color:#fff;}
   body.night .card-colab{background:#222; color:#fff;}
   body.night header{background:#333;}
+
+  /* MODAL */
+  #modal{
+    display:none; 
+    position:fixed; 
+    top:0; left:0; width:100%; height:100%; 
+    background:rgba(0,0,0,0.6); 
+    backdrop-filter:blur(4px); 
+    display:flex; justify-content:center; align-items:center; 
+    z-index:1000;
+  }
+  #modalContent{
+    background:#fff; border-radius:16px; max-width:400px; width:90%; padding:24px; text-align:center; position:relative;
+    animation:fadeIn 0.3s ease;
+  }
+  #modalContent img{
+    width:100%; max-height:220px; object-fit:contain; border-radius:12px; margin-bottom:16px;
+  }
+  #modalContent textarea{
+    width:100%; height:80px; margin-top:12px; border-radius:8px; padding:8px;
+  }
+  #closeModal{
+    position:absolute; top:12px; right:12px; background:#c19a3f; color:#fff; border:none; border-radius:50%; width:32px; height:32px; font-weight:bold; cursor:pointer;
+  }
+
+  @keyframes fadeIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+  }
 </style>
 </head>
 <body>
@@ -155,86 +165,88 @@
 
 <!-- COLABORADORES -->
 <div class="team">
-  <div class="card card-colab">
-    <img src="andrea.jpg" alt="Hna Andrea">
-    <h3>Hna Andrea</h3>
-    <p>Colaboradora Distrito #10</p>
-  </div>
-  <div class="card card-colab">
-    <img src="jeymi.jpg" alt="Hna Jeymi Mejia">
-    <h3>Hna Jeymi Mejia</h3>
-    <p>Colaboradora Distrito #1</p>
-  </div>
-  <div class="card card-colab">
-    <img src="cristofer.jpg" alt="Hno Cristofer Tercero">
-    <h3>Hno Cristofer Tercero</h3>
-    <p>Colaborador Distrito #1</p>
-  </div>
-  <div class="card card-colab">
-    <img src="roger.jpg" alt="Hno Roger Romero">
-    <h3>Hno Roger Romero</h3>
-    <p>Colaborador Distrito #1</p>
-  </div>
-  <div class="card card-colab">
-    <img src="sol.jpg" alt="Hna Sol Nohemi">
-    <h3>Hna Sol Nohemi</h3>
-    <p>Colaboradora Distrito #10</p>
-  </div>
-  <div class="card card-colab">
-    <img src="danieska.jpg" alt="Hna Danieska Duarte">
-    <h3>Hna Danieska Duarte</h3>
-    <p>Colaboradora Distrito #11</p>
-  </div>
-  <div class="card card-colab">
-    <img src="anjhoni.jpg" alt="Hno Anjhoni Salgado">
-    <h3>Hno Anjhoni Salgado</h3>
-    <p>Colaborador Distrito #12</p>
-  </div>
-  <div class="card card-colab">
-    <img src="brenda.jpg" alt="Hna Brenda">
-    <h3>Hna Brenda</h3>
-    <p>Colaboradora Distrito #12</p>
-  </div>
-  <div class="card card-colab">
-    <img src="saul.jpg" alt="Hno Saul Alvarez">
-    <h3>Hno Saul Alvarez</h3>
-    <p>Colaborador Distrito #2</p>
-  </div>
-  <div class="card card-colab">
-    <img src="belen.jpg" alt="Hna Belen Matamoros">
-    <h3>Hna Belen Matamoros</h3>
-    <p>Colaboradora Distrito #2</p>
-  </div>
-  <div class="card card-colab">
-    <img src="emily.jpg" alt="Hna Emily Tenorio">
-    <h3>Hna Emily Tenorio</h3>
-    <p>Colaboradora Distrito #9</p>
-  </div>
-  <div class="card card-colab">
-    <img src="yosselin.jpg" alt="Hna Yosselin Gonzalez">
-    <h3>Hna Yosselin Gonzalez</h3>
-    <p>Colaboradora Distrito #5</p>
-  </div>
-  <div class="card card-colab">
-    <img src="michelt.jpg" alt="Hna Michelt">
-    <h3>Hna Michelt</h3>
-    <p>Colaboradora Distrito #2</p>
-  </div>
-  <div class="card card-colab">
-    <img src="johnny.jpg" alt="Hno Johnny Solorzano">
-    <h3>Hno Johnny Solorzano</h3>
-    <p>Colaborador Distrito #10</p>
-  </div>
-  <div class="card card-colab">
-    <img src="cristhian.jpg" alt="Hno Cristhian Lopez">
-    <h3>Hno Cristhian Lopez</h3>
-    <p>Colaborador Distrito #9</p>
+  <div class="card card-colab"><img src="andrea.jpg" alt="Hna Andrea"><h3>Hna Andrea</h3><p>Colaboradora Distrito #10</p></div>
+  <div class="card card-colab"><img src="jeymi.jpg" alt="Hna Jeymi Mejia"><h3>Hna Jeymi Mejia</h3><p>Colaboradora Distrito #1</p></div>
+  <div class="card card-colab"><img src="cristofer.jpg" alt="Hno Cristofer Tercero"><h3>Hno Cristofer Tercero</h3><p>Colaborador Distrito #1</p></div>
+  <div class="card card-colab"><img src="roger.jpg" alt="Hno Roger Romero"><h3>Hno Roger Romero</h3><p>Colaborador Distrito #1</p></div>
+  <div class="card card-colab"><img src="sol.jpg" alt="Hna Sol Nohemi"><h3>Hna Sol Nohemi</h3><p>Colaboradora Distrito #10</p></div>
+  <div class="card card-colab"><img src="danieska.jpg" alt="Hna Danieska Duarte"><h3>Hna Danieska Duarte</h3><p>Colaboradora Distrito #11</p></div>
+  <div class="card card-colab"><img src="anjhoni.jpg" alt="Hno Anjhoni Salgado"><h3>Hno Anjhoni Salgado</h3><p>Colaborador Distrito #12</p></div>
+  <div class="card card-colab"><img src="brenda.jpg" alt="Hna Brenda"><h3>Hna Brenda</h3><p>Colaboradora Distrito #12</p></div>
+  <div class="card card-colab"><img src="saul.jpg" alt="Hno Saul Alvarez"><h3>Hno Saul Alvarez</h3><p>Colaborador Distrito #2</p></div>
+  <div class="card card-colab"><img src="belen.jpg" alt="Hna Belen Matamoros"><h3>Hna Belen Matamoros</h3><p>Colaboradora Distrito #2</p></div>
+  <div class="card card-colab"><img src="emily.jpg" alt="Hna Emily Tenorio"><h3>Hna Emily Tenorio</h3><p>Colaboradora Distrito #9</p></div>
+  <div class="card card-colab"><img src="yosselin.jpg" alt="Hna Yosselin Gonzalez"><h3>Hna Yosselin Gonzalez</h3><p>Colaboradora Distrito #5</p></div>
+  <div class="card card-colab"><img src="michelt.jpg" alt="Hna Michelt"><h3>Hna Michelt</h3><p>Colaboradora Distrito #2</p></div>
+  <div class="card card-colab"><img src="johnny.jpg" alt="Hno Johnny Solorzano"><h3>Hno Johnny Solorzano</h3><p>Colaborador Distrito #10</p></div>
+  <div class="card card-colab"><img src="cristhian.jpg" alt="Hno Cristhian Lopez"><h3>Hno Cristhian Lopez</h3><p>Colaborador Distrito #9</p></div>
+</div>
+
+<!-- MODAL -->
+<div id="modal">
+  <div id="modalContent">
+    <button id="closeModal">×</button>
+    <img id="modalImg" src="" alt="">
+    <h3 id="modalName"></h3>
+    <p id="modalDistrict"></p>
+    <textarea id="modalConcept" placeholder="Escribe un concepto aquí..."></textarea>
   </div>
 </div>
 
 <script>
   const nightBtn = document.getElementById('nightMode');
   nightBtn.addEventListener('click', ()=>{ document.body.classList.toggle('night'); });
+
+  const modal = document.getElementById('modal');
+  const closeModal = document.getElementById('closeModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalName = document.getElementById('modalName');
+  const modalDistrict = document.getElementById('modalDistrict');
+  const modalConcept = document.getElementById('modalConcept');
+
+  const teamData = [
+    {img:'jack.jpg', name:'Jack Arauz', district:'Administrador General', concept:'Aquí un concepto editable para Jack'},
+    {img:'juset.jpg', name:'Juset Orozco', district:'Administradora General', concept:'Concepto editable para Juset'},
+    {img:'jonathan.jpg', name:'Pr Jonathan Sanchez', district:'Administrador Distrito #15', concept:'Concepto editable para Jonathan'},
+    {img:'joan.jpg', name:'Hno Joan Ortega', district:'Administrador Distrito #8', concept:'Concepto editable para Joan'},
+    {img:'arlen.jpg', name:'Hna Arlen Quezada', district:'Administradora Distrito #2', concept:'Concepto editable para Arlen'},
+    {img:'milhy.jpg', name:'Hna Milhy Perez', district:'Administradora Distrito #9', concept:'Concepto editable para Milhy'},
+    {img:'josmary.jpg', name:'Hna Josmary Castillo', district:'Administradora Distrito #11', concept:'Concepto editable para Josmary'},
+    {img:'loyda.jpg', name:'Hna Loyda Arias', district:'Administradora Distrito #4', concept:'Concepto editable para Loyda'},
+    {img:'ester.jpg', name:'Hna Ester Aleman', district:'Administradora Distrito #3', concept:'Concepto editable para Ester'},
+    {img:'andrea.jpg', name:'Hna Andrea', district:'Colaboradora Distrito #10', concept:'Concepto editable para Andrea'},
+    {img:'jeymi.jpg', name:'Hna Jeymi Mejia', district:'Colaboradora Distrito #1', concept:'Concepto editable para Jeymi'},
+    {img:'cristofer.jpg', name:'Hno Cristofer Tercero', district:'Colaborador Distrito #1', concept:'Concepto editable para Cristofer'},
+    {img:'roger.jpg', name:'Hno Roger Romero', district:'Colaborador Distrito #1', concept:'Concepto editable para Roger'},
+    {img:'sol.jpg', name:'Hna Sol Nohemi', district:'Colaboradora Distrito #10', concept:'Concepto editable para Sol'},
+    {img:'danieska.jpg', name:'Hna Danieska Duarte', district:'Colaboradora Distrito #11', concept:'Concepto editable para Danieska'},
+    {img:'anjhoni.jpg', name:'Hno Anjhoni Salgado', district:'Colaborador Distrito #12', concept:'Concepto editable para Anjhoni'},
+    {img:'brenda.jpg', name:'Hna Brenda', district:'Colaboradora Distrito #12', concept:'Concepto editable para Brenda'},
+    {img:'saul.jpg', name:'Hno Saul Alvarez', district:'Colaborador Distrito #2', concept:'Concepto editable para Saul'},
+    {img:'belen.jpg', name:'Hna Belen Matamoros', district:'Colaboradora Distrito #2', concept:'Concepto editable para Belen'},
+    {img:'emily.jpg', name:'Hna Emily Tenorio', district:'Colaboradora Distrito #9', concept:'Concepto editable para Emily'},
+    {img:'yosselin.jpg', name:'Hna Yosselin Gonzalez', district:'Colaboradora Distrito #5', concept:'Concepto editable para Yosselin'},
+    {img:'michelt.jpg', name:'Hna Michelt', district:'Colaboradora Distrito #2', concept:'Concepto editable para Michelt'},
+    {img:'johnny.jpg', name:'Hno Johnny Solorzano', district:'Colaborador Distrito #10', concept:'Concepto editable para Johnny'},
+    {img:'cristhian.jpg', name:'Hno Cristhian Lopez', district:'Colaborador Distrito #9', concept:'Concepto editable para Cristhian'}
+  ];
+
+  document.querySelectorAll('.card').forEach((card, index)=>{
+    card.addEventListener('click', ()=>{
+      const person = teamData[index];
+      modalImg.src = person.img;
+      modalName.textContent = person.name;
+      modalDistrict.textContent = person.district;
+      modalConcept.value = person.concept;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  closeModal.addEventListener('click', ()=>{
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  });
 </script>
 
 </body>
