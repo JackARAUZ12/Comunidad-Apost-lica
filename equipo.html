@@ -41,21 +41,17 @@
   }
 
   /* TIPOS DE CUADRO */
-  .card-general{
-    background:var(--gold); color:#fff; border-radius:var(--radius); padding:20px; text-align:center; box-shadow:var(--shadow);
-    transition:transform .2s;
+  .card{
+    border-radius:var(--radius); text-align:center; box-shadow:var(--shadow); transition:transform .3s;
+    cursor:pointer;
   }
-  .card-admin{
-    background:#f4efe0; color:var(--black); border-radius:var(--radius); padding:18px; text-align:center; box-shadow:var(--shadow);
-    transition:transform .2s;
-  }
-  .card-colab{
-    background:#fafafa; color:var(--black); border-radius:var(--radius); padding:16px; text-align:center; box-shadow:var(--shadow);
-    transition:transform .2s;
+  .card:hover, .card:active{
+    transform:translateY(-5px);
   }
 
-  /* ANIMACION AL PASAR O CLICK */
-  .card:hover, .card:active{transform:translateY(-5px);}
+  .card-general{ background:var(--gold); color:#fff; padding:20px; }
+  .card-admin{ background:#f4efe0; color:var(--black); padding:18px; }
+  .card-colab{ background:#fafafa; color:var(--black); padding:16px; }
 
   .card img{
     width:100%;
@@ -77,40 +73,34 @@
 
   /* MODAL */
   #modal{
-    display:none;
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:rgba(0,0,0,.5);
-    backdrop-filter:blur(5px);
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
+    display:none; 
+    position:fixed; 
+    top:0; left:0; width:100%; height:100%; 
+    background:rgba(0,0,0,0.6); 
+    backdrop-filter:blur(4px); 
+    justify-content:center; align-items:center; 
+    z-index:1000;
   }
   #modalContent{
-    background:#fff;
-    padding:24px;
-    border-radius:16px;
-    max-width:400px;
-    width:90%;
-    text-align:center;
-    position:relative;
+    background:#fff; border-radius:16px; max-width:400px; width:90%; padding:24px; text-align:center; position:relative;
+    animation:fadeIn 0.3s ease;
   }
   #modalContent img{
-    width:80%;
-    max-height:200px;
-    object-fit:contain;
-    border-radius:12px;
-    margin-bottom:12px;
+    width:100%; max-height:220px; object-fit:contain; border-radius:12px; margin-bottom:16px;
+  }
+  #modalContent p.concept{
+    margin-top:12px;
+    font-size:1rem;
+    color:#333;
+    text-align:center;
   }
   #closeModal{
-    position:absolute;
-    top:8px;
-    right:12px;
-    background:transparent;
-    border:none;
-    font-size:24px;
-    cursor:pointer;
+    position:absolute; top:12px; right:12px; background:#c19a3f; color:#fff; border:none; border-radius:50%; width:32px; height:32px; font-weight:bold; cursor:pointer;
+  }
+
+  @keyframes fadeIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
   }
 </style>
 </head>
@@ -123,129 +113,147 @@
 
 <h1 class="title">NUESTRO EQUIPO</h1>
 
-<!-- EQUIPO -->
+<!-- ADMINISTRADORES GENERALES -->
 <div class="team">
-  <!-- ADMINISTRADORES GENERALES -->
-  <div class="card card-general" data-name="Jack Arauz" data-district="Administrador General" data-concept="Líder y fundador del equipo" data-img="jack.jpg">
+  <div class="card card-general">
     <img src="jack.jpg" alt="Jack Arauz">
     <h3>Jack Arauz</h3>
     <p>Administrador General</p>
   </div>
-  <div class="card card-general" data-name="Juset Orozco" data-district="Administradora General" data-concept="Responsable de la gestión administrativa" data-img="juset.jpg">
+  <div class="card card-general">
     <img src="juset.jpg" alt="Juset Orozco">
     <h3>Juset Orozco</h3>
     <p>Administradora General</p>
   </div>
-  <div class="card card-general" data-name="Pr Jonathan Sanchez" data-district="Administrador Distrito #15" data-concept="Encargado de supervisión de distrito" data-img="jonathan.jpg">
+  <div class="card card-general">
     <img src="jonathan.jpg" alt="Pr Jonathan Sanchez">
     <h3>Pr Jonathan Sanchez</h3>
     <p>Administrador Distrito #15</p>
   </div>
+</div>
 
-  <!-- ADMINISTRADORES DE DISTRITO -->
-  <div class="card card-admin" data-name="Hno Joan Ortega" data-district="Administrador Distrito #8" data-concept="Gestión y coordinación local" data-img="joan.jpg">
+<!-- ADMINISTRADORES DE DISTRITO -->
+<div class="team">
+  <div class="card card-admin">
     <img src="joan.jpg" alt="Hno Joan Ortega">
     <h3>Hno Joan Ortega</h3>
     <p>Administrador Distrito #8</p>
   </div>
-  <div class="card card-admin" data-name="Hna Arlen Quezada" data-district="Administradora Distrito #2" data-concept="Supervisión de actividades" data-img="arlen.jpg">
+  <div class="card card-admin">
     <img src="arlen.jpg" alt="Hna Arlen Quezada">
     <h3>Hna Arlen Quezada</h3>
     <p>Administradora Distrito #2</p>
   </div>
-  <div class="card card-admin" data-name="Hna Milhy Perez" data-district="Administradora Distrito #9" data-concept="Apoyo en planificación" data-img="milhy.jpg">
+  <div class="card card-admin">
     <img src="milhy.jpg" alt="Hna Milhy Perez">
     <h3>Hna Milhy Perez</h3>
     <p>Administradora Distrito #9</p>
   </div>
-  <div class="card card-admin" data-name="Hna Josmary Castillo" data-district="Administradora Distrito #11" data-concept="Responsable de comunicación" data-img="josmary.jpg">
+  <div class="card card-admin">
     <img src="josmary.jpg" alt="Hna Josmary Castillo">
     <h3>Hna Josmary Castillo</h3>
     <p>Administradora Distrito #11</p>
   </div>
-  <div class="card card-admin" data-name="Hna Loyda Arias" data-district="Administradora Distrito #4" data-concept="Supervisión de eventos" data-img="loyda.jpg">
+  <div class="card card-admin">
     <img src="loyda.jpg" alt="Hna Loyda Arias">
     <h3>Hna Loyda Arias</h3>
     <p>Administradora Distrito #4</p>
   </div>
-  <div class="card card-admin" data-name="Hna Ester Aleman" data-district="Administradora Distrito #3" data-concept="Apoyo general" data-img="ester.jpg">
+  <div class="card card-admin">
     <img src="ester.jpg" alt="Hna Ester Aleman">
     <h3>Hna Ester Aleman</h3>
     <p>Administradora Distrito #3</p>
   </div>
+</div>
 
-  <!-- COLABORADORES -->
-  <div class="card card-colab" data-name="Hna Andrea" data-district="Colaboradora Distrito #10" data-concept="Asistencia y apoyo" data-img="andrea.jpg">
-    <img src="andrea.jpg" alt="Hna Andrea">
-    <h3>Hna Andrea</h3>
-    <p>Colaboradora Distrito #10</p>
-  </div>
-  <div class="card card-colab" data-name="Hna Jeymi Mejia" data-district="Colaboradora Distrito #1" data-concept="Apoyo logístico" data-img="jeymi.jpg">
-    <img src="jeymi.jpg" alt="Hna Jeymi Mejia">
-    <h3>Hna Jeymi Mejia</h3>
-    <p>Colaboradora Distrito #1</p>
-  </div>
-  <div class="card card-colab" data-name="Hno Cristofer Tercero" data-district="Colaborador Distrito #1" data-concept="Asistencia en eventos" data-img="cristofer.jpg">
-    <img src="cristofer.jpg" alt="Hno Cristofer Tercero">
-    <h3>Hno Cristofer Tercero</h3>
-    <p>Colaborador Distrito #1</p>
-  </div>
-  <div class="card card-colab" data-name="Hno Roger Romero" data-district="Colaborador Distrito #1" data-concept="Apoyo general" data-img="roger.jpg">
-    <img src="roger.jpg" alt="Hno Roger Romero">
-    <h3>Hno Roger Romero</h3>
-    <p>Colaborador Distrito #1</p>
-  </div>
-  <div class="card card-colab" data-name="Hna Sol Nohemi" data-district="Colaboradora Distrito #10" data-concept="Apoyo logístico" data-img="sol.jpg">
-    <img src="sol.jpg" alt="Hna Sol Nohemi">
-    <h3>Hna Sol Nohemi</h3>
-    <p>Colaboradora Distrito #10</p>
-  </div>
-  <!-- ... continúa con todos los demás colaboradores de la misma manera ... -->
+<!-- COLABORADORES -->
+<div class="team">
+  <div class="card card-colab"><img src="andrea.jpg" alt="Hna Andrea"><h3>Hna Andrea</h3><p>Colaboradora Distrito #10</p></div>
+  <div class="card card-colab"><img src="jeymi.jpg" alt="Hna Jeymi Mejia"><h3>Hna Jeymi Mejia</h3><p>Colaboradora Distrito #1</p></div>
+  <div class="card card-colab"><img src="cristofer.jpg" alt="Hno Cristofer Tercero"><h3>Hno Cristofer Tercero</h3><p>Colaborador Distrito #1</p></div>
+  <div class="card card-colab"><img src="roger.jpg" alt="Hno Roger Romero"><h3>Hno Roger Romero</h3><p>Colaborador Distrito #1</p></div>
+  <div class="card card-colab"><img src="sol.jpg" alt="Hna Sol Nohemi"><h3>Hna Sol Nohemi</h3><p>Colaboradora Distrito #10</p></div>
+  <div class="card card-colab"><img src="danieska.jpg" alt="Hna Danieska Duarte"><h3>Hna Danieska Duarte</h3><p>Colaboradora Distrito #11</p></div>
+  <div class="card card-colab"><img src="anjhoni.jpg" alt="Hno Anjhoni Salgado"><h3>Hno Anjhoni Salgado</h3><p>Colaborador Distrito #12</p></div>
+  <div class="card card-colab"><img src="brenda.jpg" alt="Hna Brenda"><h3>Hna Brenda</h3><p>Colaboradora Distrito #12</p></div>
+  <div class="card card-colab"><img src="saul.jpg" alt="Hno Saul Alvarez"><h3>Hno Saul Alvarez</h3><p>Colaborador Distrito #2</p></div>
+  <div class="card card-colab"><img src="belen.jpg" alt="Hna Belen Matamoros"><h3>Hna Belen Matamoros</h3><p>Colaboradora Distrito #2</p></div>
+  <div class="card card-colab"><img src="emily.jpg" alt="Hna Emily Tenorio"><h3>Hna Emily Tenorio</h3><p>Colaboradora Distrito #9</p></div>
+  <div class="card card-colab"><img src="yosselin.jpg" alt="Hna Yosselin Gonzalez"><h3>Hna Yosselin Gonzalez</h3><p>Colaboradora Distrito #5</p></div>
+  <div class="card card-colab"><img src="michelt.jpg" alt="Hna Michelt"><h3>Hna Michelt</h3><p>Colaboradora Distrito #2</p></div>
+  <div class="card card-colab"><img src="johnny.jpg" alt="Hno Johnny Solorzano"><h3>Hno Johnny Solorzano</h3><p>Colaborador Distrito #10</p></div>
+  <div class="card card-colab"><img src="cristhian.jpg" alt="Hno Cristhian Lopez"><h3>Hno Cristhian Lopez</h3><p>Colaborador Distrito #9</p></div>
 </div>
 
 <!-- MODAL -->
-<div id="modal" style="display:none;">
+<div id="modal">
   <div id="modalContent">
     <button id="closeModal">×</button>
-    <img src="" alt="" id="modalImg">
+    <img id="modalImg" src="" alt="">
     <h3 id="modalName"></h3>
     <p id="modalDistrict"></p>
-    <p id="modalConcept"></p>
+    <p class="concept" id="modalConcept"></p>
   </div>
 </div>
 
 <script>
-  // Modo noche
   const nightBtn = document.getElementById('nightMode');
   nightBtn.addEventListener('click', ()=>{ document.body.classList.toggle('night'); });
 
-  // Modal
   const modal = document.getElementById('modal');
+  const closeModal = document.getElementById('closeModal');
   const modalImg = document.getElementById('modalImg');
   const modalName = document.getElementById('modalName');
   const modalDistrict = document.getElementById('modalDistrict');
   const modalConcept = document.getElementById('modalConcept');
-  const closeModal = document.getElementById('closeModal');
 
-  document.querySelectorAll('.card').forEach(card=>{
+  const teamData = [
+    {img:'jack.jpg', name:'Jack Arauz', district:'Administrador General', concept:'Líder espiritual y administrativo de la comunidad.'},
+    {img:'juset.jpg', name:'Juset Orozco', district:'Administradora General', concept:'Encargada de la organización y planificación general.'},
+    {img:'jonathan.jpg', name:'Pr Jonathan Sanchez', district:'Administrador Distrito #15', concept:'Supervisa el distrito #15 y coordina actividades.'},
+    {img:'joan.jpg', name:'Hno Joan Ortega', district:'Administrador Distrito #8', concept:'Responsable del Distrito #8 y soporte a líderes.'},
+    {img:'arlen.jpg', name:'Hna Arlen Quezada', district:'Administradora Distrito #2', concept:'Coordina el Distrito #2 y apoya en logística.'},
+    {img:'milhy.jpg', name:'Hna Milhy Perez', district:'Administradora Distrito #9', concept:'Gestiona el Distrito #9 y fomenta la participación.'},
+    {img:'josmary.jpg', name:'Hna Josmary Castillo', district:'Administradora Distrito #11', concept:'Líder de organización en Distrito #11.'},
+    {img:'loyda.jpg', name:'Hna Loyda Arias', district:'Administradora Distrito #4', concept:'Encargada del Distrito #4 y eventos locales.'},
+    {img:'ester.jpg', name:'Hna Ester Aleman', district:'Administradora Distrito #3', concept:'Supervisa actividades y crecimiento en Distrito #3.'},
+    {img:'andrea.jpg', name:'Hna Andrea', district:'Colaboradora Distrito #10', concept:'Apoya actividades y eventos en Distrito #10.'},
+    {img:'jeymi.jpg', name:'Hna Jeymi Mejia', district:'Colaboradora Distrito #1', concept:'Participa activamente en el Distrito #1.'},
+    {img:'cristofer.jpg', name:'Hno Cristofer Tercero', district:'Colaborador Distrito #1', concept:'Colabora en eventos y apoyo del Distrito #1.'},
+    {img:'roger.jpg', name:'Hno Roger Romero', district:'Colaborador Distrito #1', concept:'Asiste en actividades del Distrito #1.'},
+    {img:'sol.jpg', name:'Hna Sol Nohemi', district:'Colaboradora Distrito #10', concept:'Colabora en programas del Distrito #10.'},
+    {img:'danieska.jpg', name:'Hna Danieska Duarte', district:'Colaboradora Distrito #11', concept:'Apoyo a líderes y actividades en Distrito #11.'},
+    {img:'anjhoni.jpg', name:'Hno Anjhoni Salgado', district:'Colaborador Distrito #12', concept:'Participa en iniciativas del Distrito #12.'},
+    {img:'brenda.jpg', name:'Hna Brenda', district:'Colaboradora Distrito #12', concept:'Apoya en logística y eventos del Distrito #12.'},
+    {img:'saul.jpg', name:'Hno Saul Alvarez', district:'Colaborador Distrito #2', concept:'Colabora en eventos del Distrito #2.'},
+    {img:'belen.jpg', name:'Hna Belen Matamoros', district:'Colaboradora Distrito #2', concept:'Apoyo en actividades del Distrito #2.'},
+    {img:'emily.jpg', name:'Hna Emily Tenorio', district:'Colaboradora Distrito #9', concept:'Colabora con líderes y actividades en Distrito #9.'},
+    {img:'yosselin.jpg', name:'Hna Yosselin Gonzalez', district:'Colaboradora Distrito #5', concept:'Participa en eventos del Distrito #5.'},
+    {img:'michelt.jpg', name:'Hna Michelt', district:'Colaboradora Distrito #2', concept:'Colabora activamente en Distrito #2.'},
+    {img:'johnny.jpg', name:'Hno Johnny Solorzano', district:'Colaborador Distrito #10', concept:'Participa en eventos del Distrito #10.'},
+    {img:'cristhian.jpg', name:'Hno Cristhian Lopez', district:'Colaborador Distrito #9', concept:'Apoyo y participación en Distrito #9.'}
+  ];
+
+  document.querySelectorAll('.card').forEach((card, index)=>{
     card.addEventListener('click', ()=>{
-      modal.style.display = 'flex';
-      modalImg.src = card.dataset.img;
-      modalImg.alt = card.dataset.name;
-      modalName.textContent = card.dataset.name;
-      modalDistrict.textContent = card.dataset.district;
-      modalConcept.textContent = card.dataset.concept;
+      const person = teamData[index];
+      if(person){ // <-- evita error y cuadro al iniciar
+        modalImg.src = person.img;
+        modalName.textContent = person.name;
+        modalDistrict.textContent = person.district;
+        modalConcept.textContent = person.concept;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
     });
   });
 
   closeModal.addEventListener('click', ()=>{
-    modal.style.display='none';
-  });
-
-  modal.addEventListener('click', (e)=>{
-    if(e.target===modal) modal.style.display='none';
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
   });
 </script>
 
 </body>
 </html>
+
